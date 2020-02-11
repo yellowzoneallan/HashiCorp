@@ -1,0 +1,11 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/disco64"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 2
+  end
+  config.vm.network :private_network, ip: "192.168.3.3"
+  config.vm.provision "shell", inline: <<-SHELL
+  git clone https://github.com/yellowzoneallan/MAT; cd MAT; ./setup.sh
+   SHELL
+end
